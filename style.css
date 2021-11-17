@@ -1,0 +1,178 @@
+*{
+    font-family: "helvetica" sans-serif;
+}
+header{
+    background-image:url("guitare.jpg");
+    width: auto;
+    height:100px;
+    display: flex;
+    justify-content: center;
+    /* vertical-align: middle; */
+    align-items: center;
+    font-size: 50px;
+    margin: -10px -10px 0 -10px;
+    font-weight: bold;
+    color: lightgray;
+    text-shadow: black 2px 2px;
+    
+}
+
+body{
+    background-color: rgb(214, 214, 214);
+    border-radius: 20px;
+}
+.onglets{
+    display: flex;
+    justify-content:space-evenly;
+    width: auto;
+    height: 35px;
+    font-size: 20px;
+    background-color: brown;
+     margin: 0 -10px 0 -10px;
+     border: solid rgb(224, 116, 116) 2px;
+     border-bottom-left-radius: 10px;
+     border-bottom-right-radius: 10px;
+     align-items: center;
+}
+
+.onglet1{    
+    width:640px;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+}
+.testback{
+    background-color: rgb(131, 33, 33);
+    width:340px;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+}
+.onglet2{    
+    width:640px;
+    display: flex;
+    justify-content: center;
+}
+.onglet0{
+    width: 6px;
+}
+.active{
+    /* text-shadow: rgb(145, 140, 140) 1px -1px; */
+    font-weight: bold;
+    color: lightgray;
+    
+}
+.participe{
+    font-weight: bold;
+}
+.menuD{
+display: block;
+float: right;
+width :17%;
+background-color:brown;
+height: 400px;
+margin: auto 20px 0 30px;
+border: solid rgb(224, 116, 116) 2px;
+border-radius: 20px;
+/* padding: 10px 18px 30px 30px; */
+color: lightgray;
+}
+.innerMenu{
+    padding-top : 30px;
+    padding-left: 12px;
+    line-height: 0px;
+    
+}
+
+.innerMenu2{
+    padding-top : 30px;
+    padding-left: 12px;
+    /* line-height: 20px; */
+    font-size: 12px;
+    
+    
+}
+
+input{
+    width: 90%;
+    border-radius: 4px;
+    background-color: lightgray;
+}
+select{
+        width: 90%;
+        border-radius: 4px;
+        background-color: lightgray;
+}
+h3{
+    text-align: center;
+    margin :0px;
+    margin-top: 15px;
+}
+.container{
+    width: auto;
+    margin-top: 50px;
+} 
+h2{
+    text-align: center;
+}
+
+.btnConnexion{
+    display: flex;
+    text-align: center;
+}
+
+.btnSpot{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.mdpOublie{
+    display:flex;
+    font-size: 12px;
+    margin-top: 20px;
+    text-decoration: underline;
+}
+.mdpOublie:hover{
+    cursor:pointer;
+}
+
+.btnInscription{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.inscrit{
+
+  justify-content: center;
+    margin-top: 60px;
+   font-size: 14px;
+}
+.mail{
+    margin-bottom: 10px;
+}
+.formulaire{
+    display: block;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+
+}
+.marge{
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: brown 3px 3px;
+}
+.valider{
+display: flex;
+justify-content: center;
+margin-top: 20px;
+}
+label{
+    font-size: 13px;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
