@@ -233,6 +233,7 @@ a{
     display: block;
 }
 
-.soulign{
-    text-decoration: none;
+.souligne{
+    text-decoration: underline;
+
 }
