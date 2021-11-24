@@ -37,7 +37,7 @@ session_start();
 	   </head>
 	   <body>
 	      <div class="infos">
-		  <h2>Profil de <?php echo $_SESSION['pseudo']; ?></h2>
+		  <h2 class="souligne">Profil de <?php echo $_SESSION['pseudo']; ?></h2>
 	         <br />
 	         Nom : <?php echo $_SESSION['nom']; ?>
 	         <br />
