@@ -58,6 +58,12 @@ session_start();
 <label for="nom">Ville: </label><input type="text" maxlength="100" required name="ville" placeholder="Ville" id="ville" class="ville marge">
 </div>
 
+<div class="btncgu">
+<label for="cgu">J'ai lu et accepte le reglement :</label>
+<input type="checkbox" id="cgu" class="cgu" name="cgu" required ></input>
+
+
+
 <div class="valider">
 <button type="submit" name="submit" class="btnValider">Valider</button>
 </div>

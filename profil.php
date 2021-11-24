@@ -80,7 +80,9 @@ session_start();
          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio laboriosam tenetur, error id harum labore sunt fuga perferendis quae quasi beatae accusamus dolorum eaque aut saepe facilis deserunt nobis. Eveniet!
         </p>
 
-		
+<?php
+if($_SESSION['id']!= 0){
+?>	
 <h2>Choix de votre chanson pour le concours.</h2>
 		<div class="containerFormChant">
 			
@@ -99,6 +101,11 @@ session_start();
     <form method="POST"  enctype="multipart/form-data">
         <input type="file" name="uploaded_file"> <br />
         <input type="submit" name="submit"> <br>
+</form>
+<?php
+}else{}
+?>
+
 </body>
 
 </html>
@@ -107,7 +114,7 @@ session_start();
 if (isset($_POST['submit'])) 
 {
     $maxSize = 8000000;
-    $validtext = array('.jpg', '.jpeg', '.gif', '.png', '.mp3', 'mp4', '.mpeg');
+    $validtext = array('.mp3', 'mp4');
 
     if ($_FILES['uploaded_file']['error'] > 0) 
     {
@@ -116,7 +123,6 @@ if (isset($_POST['submit']))
     }
 
     $fileSize = $_FILES['uploaded_file']['size'];
-echo" $fileSize octets envoyés, ";
     if ($fileSize > $maxSize) 
     {
         echo "le fichier est trop gros";
@@ -128,7 +134,7 @@ echo" $fileSize octets envoyés, ";
     $fileExt = "." . strtolower(substr(strrchr($fileName, "."), 1));
 
     if (!in_array($fileExt, $validtext)) {
-        echo "le fichier n'est pas une image !";
+        echo "le fichier n'est pas au bon format !";
         die;
     }
 
