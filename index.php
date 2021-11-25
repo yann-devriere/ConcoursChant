@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+// phpinfo();
 $db = new PDO('mysql:host=localhost;dbname=concoursChant;', 'chant' , '01021991');
 
 if(isset($_POST['formconnexion'])) {

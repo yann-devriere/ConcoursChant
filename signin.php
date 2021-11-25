@@ -2,7 +2,7 @@
 session_start();
 
 $db = new PDO('mysql:host=localhost;dbname=concoursChant;', 'chant' , '01021991');
-
+// $db = new PDO('mysql:host=localhost;dbname=concoursChant', 'yann.devriere', '!!MAcao2001@'); 
 
 $pseudo=$_POST['pseudo'];
 $nom=$_POST['nom'];
@@ -27,13 +27,12 @@ $checkpseudo = "SELECT pseudo FROM users WHERE pseudo='$pseudo'";
   $resultat = $db->prepare($checkpseudo);
   $resultat-> execute();
 
-  $checktel = "SELECT telephone FROM users WHERE telephone='$telephone'";
-  $resultat = $db->prepare($checktel);
-  $resultat-> execute();
+$checktel = "SELECT telephone FROM users WHERE telephone ='$telephone'";
+$resultat1 = $db->prepare($checktel);
+$resultat1->execute();
 
-if($result->rowCount() > 0 or $resultat->rowCount() > 0 or $checktel->rowCount() > 0){
-  echo '<script>alert("Adresse mail, pseudo ou numéro de téléphone déja utilisé." );window.location.href = "./inscription.php";</script>'; 
-  
+if($result->rowCount() > 0 or $resultat->rowCount() > 0 or $resultat1->rowCount() > 0){
+  echo '<script>alert("Adresse mail ou pseudo déja utilisée" );window.location.href = "./inscription.php";</script>'; 
 }
 else{
   $sql = "INSERT INTO users (pseudo,nom,prenom,age,sexe,email,password,telephone,adresse,codepostal,ville) VALUES ('$pseudo','$nom','$prenom','$age','$sexe','$email','$hashed_password','$telephone','$adresse','$codepostal','$ville')";
@@ -41,6 +40,10 @@ else{
   $req -> execute();
    echo '<script>alert("Enregistrement réussi" );window.location.href = "./index.php";</script>'; 
    
+   $sql1 = "INSERT INTO songs (pseudo) VALUES ('$pseudo')";
+   $req1 = $db->prepare($sql1);
+   $req1 -> execute();
+
   exit();
 
 }
