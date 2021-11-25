@@ -2,7 +2,7 @@
 session_start();
 
 $db = new PDO('mysql:host=localhost;dbname=concoursChant;', 'chant' , '01021991');
-// $db = new PDO('mysql:host=localhost;dbname=concoursChant', 'yann.devriere', '!!MAcao2001@'); 
+
 
 $pseudo=$_POST['pseudo'];
 $nom=$_POST['nom'];
@@ -18,12 +18,21 @@ $ville=$_POST['ville'];
           
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-$sql = "SELECT * FROM users WHERE email='$email'"; 
+$sql = "SELECT email FROM users WHERE email='$email'"; 
   $result = $db->prepare($sql);
   $result-> execute();
 
-if($result->rowCount() > 0){
-  echo '<script>alert("Adresse mail déja utilisée" );window.location.href = "./inscription.php";</script>'; 
+ 
+$checkpseudo = "SELECT pseudo FROM users WHERE pseudo='$pseudo'";
+  $resultat = $db->prepare($checkpseudo);
+  $resultat-> execute();
+
+  $checktel = "SELECT telephone FROM users WHERE telephone='$telephone'";
+  $resultat = $db->prepare($checktel);
+  $resultat-> execute();
+
+if($result->rowCount() > 0 or $resultat->rowCount() > 0 or $checktel->rowCount() > 0){
+  echo '<script>alert("Adresse mail, pseudo ou numéro de téléphone déja utilisé." );window.location.href = "./inscription.php";</script>'; 
   
 }
 else{

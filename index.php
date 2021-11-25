@@ -2,7 +2,6 @@
 session_start();
 
 $db = new PDO('mysql:host=localhost;dbname=concoursChant;', 'chant' , '01021991');
-// $db = new PDO('mysql:host=localhost;dbname=concoursChant', 'yann.devriere', '!!MAcao2001@'); 
 
 if(isset($_POST['formconnexion'])) {
     $pseudoconnect = /*htmlspecialchars */($_POST['pseudoconnect']);
