@@ -88,18 +88,20 @@ if($_SESSION['id']!= 0){
 </br>
 <h2>Choix de votre chanson pour le concours.</h2>  
 
+<form name="formJS" id="formJS">
 <input list="artists" id="queryArtists">
-<datalist name="artists" id="artists">              </datalist>  
-
+<datalist name="artists" id="artists">              </datalist> 
+<button type="submit"> soumettre </button>
+</form>
 
 <p id="chuck"></p>
 
 		<div class="containerFormChant">
       
 			
-		<Form class="formChant"> 
-				<label for="nom">Artiste</label><Input placeholder="Artiste" class="marge">
-				<label for="nom">Titre</label><Input placeholder="Titre de la chanson" class="marge">
+		<Form class="formChant" action="testcurl.php" method="POST"> 
+				<label for="nom">Artiste</label><Input placeholder="Artiste" class="marge" name="artiste">
+				<label for="nom">Titre</label><Input placeholder="Titre de la chanson" class="marge" name="titre">
 				<div class="valider">
 				<button type="submit" name="submit" class="btnValider">Rechercher</button>
 </div>
@@ -107,12 +109,12 @@ if($_SESSION['id']!= 0){
 		</div>
 </div>
 
-
-
     <form method="POST"  enctype="multipart/form-data">
         <input type="file" name="uploaded_file"> <br />
         <input type="submit" name="submit"> <br>
 </form>
+
+<div id="listeArt">
 <?php
 }else{}
 ?>

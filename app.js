@@ -14,56 +14,79 @@ function checkPass() {
      let mdp2 = document.getElementById("password2").value;
      if(mdp1 == mdp2) { document.form.submit(); 
      } else { alert("mdp différents");
-      event.preventDefault(); 
+      e.preventDefault(); 
     }
     }
 
 
+    const formArtiste = document.querySelector("#queryArtists");
 
-    document.querySelector("#queryArtists").addEventListener("input", (e) => {
-      const query = e.target.value;
+    // document.querySelector("#formJS").addEventListener("submit", (e) => {
+    //   const query = formArtiste.value;
+    //   e.preventDefault();
+    //   search(query);
+    // });
+    
+    // function search(param) {
+    //   const url = `http://217.182.174.155:5000/ws/2/artist?query=${param}%20&fmt=json`;
+    //   fetch(url)
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       console.log("data", data);
+    //       const artists = data.artists;
+    //       artists.forEach((element) => {
+    //         const nameArtist = element["name"];
+    //         document.querySelector(
+    //           "#artists"
+    //         ).innerHTML += `<option value="${nameArtist}">${nameArtist}</option>`;
+    //       });
+    //     })
+    //     .catch((err) => console.log(err));
+    // }
+
+
+    document.querySelector("#formJS").addEventListener("submit", (e) => {
+      const query = formArtiste.value;
+      e.preventDefault();
       search(query);
     });
     
     function search(param) {
-      const url = `http://217.182.174.155:5000/ws/2/artist?query=${param}&fmt=json`;
+      const url = `http://217.182.174.155:5000/ws/2/artist?query=${param}%20&fmt=json`;
       fetch(url)
-        .then((res) => {
-          console.log(res);
-          res.json();
-        })
+        .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          console.log("data", data);
           const artists = data.artists;
           artists.forEach((element) => {
-            const nameArtist = element["sort-name"];
+            const nameArtist = element["name"];
             document.querySelector(
-              "#artists"
-            ).innerHTML += `<option value="${nameArtist}">${nameArtist}</option>`;
+              "#listeArt"
+            ).innerHTML += `<p>${nameArtist}</p>`;
           });
         })
         .catch((err) => console.log(err));
     }
 
 
-      fetch("http://localhost:8080/apiCurl.php")
-      .then((res) => res.json())
-      .then((artistes) => {
-        console.log(artistes);
-        const artists = artistes;
-          artists.forEach((element) => {
-            
-            console.log(element.name);
-            const nameArtist = element.name;
-            document.querySelector(
-              "#artists"
-            ).innerHTML += `<option value="${nameArtist}">${nameArtist}</option>`;
-          });
+    // fetch("http://localhost:8080/apiCurl.php")
+    // .then((res) => res.json())
+    // .then((artistes) => {
+    //   console.log(artistes);
+    //   const artists = artistes;
+    //     artists.forEach((element) => {
+          
+    //       console.log(element.name);
+    //       const nameArtist = element.name;
+    //       document.querySelector(
+    //         "#artists"
+    //       ).innerHTML += `<option value="${nameArtist}">${nameArtist}</option>`;
+    //     });
 
 
         // chuck.innerText = facts.value;
         // document.querySelector("#cat").src = cats[0].url;
-      });
+      // });
     
    
 
