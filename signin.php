@@ -2,7 +2,7 @@
 session_start();
 
 $db = new PDO('mysql:host=localhost;dbname=concoursChant;', 'chant' , '01021991');
-// $db = new PDO('mysql:host=localhost;dbname=concoursChant', 'yann.devriere', '!!MAcao2001@'); 
+
 
 $pseudo=$_POST['pseudo'];
 $nom=$_POST['nom'];

@@ -85,10 +85,17 @@ if($_SESSION['id']!= 0){
 ?>	
 
 <h2> Etat d'avancement de votre inscription :</h2>
-<div > Jouisergrlhsrvnkl
 </br>
-<h2>Choix de votre chanson pour le concours.</h2>
+<h2>Choix de votre chanson pour le concours.</h2>  
+
+<input list="artists" id="queryArtists">
+<datalist name="artists" id="artists">              </datalist>  
+
+
+<p id="chuck"></p>
+
 		<div class="containerFormChant">
+      
 			
 		<Form class="formChant"> 
 				<label for="nom">Artiste</label><Input placeholder="Artiste" class="marge">
@@ -155,7 +162,6 @@ if (isset($_POST['submit']))
 
 ?>
 
-</form>
 
 
 <script>
