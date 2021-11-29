@@ -89,19 +89,20 @@ if($_SESSION['id']!= 0){
 <h2>Choix de votre chanson pour le concours.</h2>  
 
 <form name="formJS" id="formJS">
-<input list="artists" id="queryArtists">
-<datalist name="artists" id="artists">              </datalist> 
+<input type="text" id="queryArtists" require>
+<input type="text" id="querySongs" require>
 <button type="submit"> soumettre </button>
 </form>
 
-<p id="chuck"></p>
 
 		<div class="containerFormChant">
       
 			
-		<Form class="formChant" action="testcurl.php" method="POST"> 
-				<label for="nom">Artiste</label><Input placeholder="Artiste" class="marge" name="artiste">
-				<label for="nom">Titre</label><Input placeholder="Titre de la chanson" class="marge" name="titre">
+		<Form class="formChant"  method="POST"> 
+				<label for="nom">Artiste</label><select placeholder="artistes correspondants à votre recherche" name="artists" id="artists">  </select>
+
+				<label for="nom">Titre</label><select placeholder="morceaux correspondants à votre recherche" name="songs" id="songs">  </select>
+
 				<div class="valider">
 				<button type="submit" name="submit" class="btnValider">Rechercher</button>
 </div>
