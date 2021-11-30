@@ -87,7 +87,44 @@ if($_SESSION['id']!= 0){
 <h2> Etat d'avancement de votre inscription :</h2>
 
 </br>
-<h2>Choix de votre chanson pour le concours.</h2>  
+
+
+		
+<?php if ($_SESSION['verif1'] != 0 ){ ?>
+<?php
+ $dejaChoisi = $db->prepare("SELECT * FROM songs WHERE pseudo = ?");
+ $dejaChoisi->execute(array($_SESSION['pseudo']));
+ $chansonDB = $dejaChoisi->fetch();
+ $chansonCheck=$chansonDB['song'];
+ $artisteCheck=$chansonDB['artiste'];
+echo"
+<p>Vous avez demandé à chanter la chanson <b><?php echo $chansonCheck ?></b> par <b><?php echo $artisteCheck ?></b>. </p>";
+  ?>
+
+    <h2>Envoyez-nous votre bande son</h2>
+<div class ="formUpload">
+    <form  method="POST"  enctype="multipart/form-data">
+        <input class="formUploadInput" type="file" name="uploaded_file"> 
+       <div class="valider"><input class="formUploadButton" type="submit" name="submit"> </div> 
+</form>
+</div>
+</div>
+<?php }else{ ?>
+
+    <?php
+ $dejaChoisi = $db->prepare("SELECT * FROM songs WHERE pseudo = ?");
+ $dejaChoisi->execute(array($_SESSION['pseudo']));
+ $chansonDB = $dejaChoisi->fetch();
+ $chansonCheck=$chansonDB['song'];
+ $artisteCheck=$chansonDB['artiste'];
+ if ($chansonCheck != NULL){
+
+?>
+
+<p>Vous avez demandé à chanter la chanson <b><?php echo $chansonCheck ?></b> par <b><?php echo $artisteCheck ?></b>. </p>
+
+<?php } ?>
+    <h2>Choix de votre chanson pour le concours.</h2>  
 <div class="submitContainer">
 <div class="containerFormChant">
 <form class = "formChant" name="formJS" id="formJS">
@@ -98,31 +135,26 @@ if($_SESSION['id']!= 0){
 </div>
 </form>
 </div>
+    <div class="containerFormChant">
+		<Form class="formChant" id="formChanson"  onsubmit= "return confirm('envoyer cette demande ?')"method="POST" action="stockInfoChansons.php"> 
+			<label for="nom">Artiste</label><select required placeholder="artistes correspondants à votre recherche" name="artists" id="artists" class="inputSearch">  <option value="neutre" disabled selected >Artistes correspondants à la recherche</option></select>
 
-		<div class="containerFormChant">
-		<Form class="formChant"  method="POST"> 
-			<label for="nom">Artiste</label><select placeholder="artistes correspondants à votre recherche" name="artists" id="artists" class="inputSearch">  <option value="neutre" disabled selected >Artistes correspondants à la recherche</option></select>
-
-			<label for="nom">Titre</label><select placeholder="morceaux correspondants à votre recherche" name="songs" id="songs" class="inputSearch">  <option value="neutre" disabled selected>Titres correspondants à la recherche</option></select>
+			<label for="nom">Titre</label><select placeholder="morceaux correspondants à votre recherche" name="songs" id="songs" class="inputSearch" required>  <option value="neutre" disabled selected>Titres correspondants à la recherche</option></select>
 			<div class="valider">
-			<button type="submit" name="submit" class="btnValider">Valider ma chanson</button>
+			<button type="submit" id="validationChanson" name="submit" class="btnValider">Valider ma chanson</button>
 </div>
 		</Form>
 		</div>
 </div>
-<?php if ($_SESSION['verif1'] != 0 ){ ?>
-<div class ="formUpload">
-    <form  method="POST"  enctype="multipart/form-data">
-        <input class="formUploadInput" type="file" name="uploaded_file"> 
-       <div class="valider"><input class="formUploadButton" type="submit" name="submit"> </div> 
-</form>
-</div>
-</div>
-<?php }else{} ?>
+<?php } ?>
 
 </div>
+
 <?php
-}else{}
+}
+else{
+
+}
 ?>
 
 </body>
@@ -170,9 +202,7 @@ if (isset($_POST['submit']))
 
 ?>
 
-
-
-<script>
+	<script>
 	const deco= document.querySelector("#deco");
 
 	deco.addEventListener("click",()=>{
@@ -181,7 +211,19 @@ if (isset($_POST['submit']))
 		}else{
 			window.location.href="./profil.php"
 		}
-
 	})
 
 	</script>
+
+<!-- <script>
+	const validationChanson = document.querySelector("#formChanson");
+
+	validationChanson.addEventListener("submit",()=>{
+		if ( confirm("Vous allez soumettre votre demande de chanson")){
+            window.location.href="./profil.php"
+		}else{
+			window.location.href="./profil.php"
+		}
+	})
+
+	</script> -->
