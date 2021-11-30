@@ -33,6 +33,7 @@ if(isset($_POST['formconnexion'])) {
           $_SESSION['adresse'] = $userinfo['adresse'];
           $_SESSION['codepostal'] = $userinfo['codepostal'];
           $_SESSION['ville'] = $userinfo['ville'];
+          $_SESSION['verif1'] = $userinfo['verif1'];
          
           header("Location: profil.php");
 
