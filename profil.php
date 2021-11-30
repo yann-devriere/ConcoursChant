@@ -109,7 +109,7 @@ if($_SESSION['id']!= 0){
 		</Form>
 		</div>
 </div>
-
+<?php if ($_SESSION['verif1'] != 0 ){ ?>
 <div class ="formUpload">
     <form  method="POST"  enctype="multipart/form-data">
         <input class="formUploadInput" type="file" name="uploaded_file"> 
@@ -117,6 +117,7 @@ if($_SESSION['id']!= 0){
 </form>
 </div>
 </div>
+<?php }else{} ?>
 
 </div>
 <?php
