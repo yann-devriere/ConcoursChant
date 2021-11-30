@@ -214,17 +214,17 @@ a{
     color: lightgray;
 }
 .containerFormChant{
-    width:40%;
+    width:60%;
     display: flex;
-    justify-content: center;
-     margin-top: 3%;
-     margin-left: auto;
-     margin-right: auto;
+    justify-content: space-evenly;
+     margin-top: 1%;
+     margin-left: 0%;
+     margin-right: 0%;
      background-image: linear-gradient(to bottom,rgb(202, 65, 65) 11%, brown 56%);
      border : 2px solid rgb(224, 116, 116);
      background-color: rgb(42, 66, 90);
      border-radius: 3px;
-     margin-bottom: 7%;
+     margin-bottom: 1%;
      color: lightgray;   
 }
 .formChant{
@@ -236,4 +236,47 @@ a{
 .souligne{
     text-decoration: underline;
 
+}
+
+.bodyContainer{
+    width:70%;
+    margin-left:4%;
+    text-align: justify;
+}
+
+.submitContainer{
+    display: flex;
+}
+
+.inputSearch{
+    width:100%;
+    margin: auto;
+    
+}
+
+.formUpload{
+    display: flex;
+    justify-content: center;
+     margin-top: 1%;
+     margin-left: auto;
+     margin-right: auto;
+     background-image: linear-gradient(to bottom,rgb(202, 65, 65) 11%, brown 56%);
+     border : 2px solid rgb(224, 116, 116);
+     background-color: rgb(42, 66, 90);
+     border-radius: 3px;
+     margin-bottom: 1%;
+     color: lightgray; 
+     width :60%;
+     padding-top: 2%;
+}
+
+.formUploadInput{
+display: flex;
+    width :100%;
+}
+
+.formUploadButton{
+    display: flex;
+    width: 50%;
+    align-content: center;
 }

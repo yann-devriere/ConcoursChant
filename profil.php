@@ -71,13 +71,13 @@ session_start();
         </div>
         
     </div>
+
+    <div class = "bodyContainer"> 
     <h2>Mon profil</h2><br>
      <p> dolor sit amet consectetur adipisicing elit. Aperiam officia necessitatibus beatae architecto expedita reiciendis 
          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, sit? Dicta sapiente hic corrupti suscipit. Consequuntur vel sed unde, fugiat numquam explicabo iusto ducimus, odio id provident consectetur iste iure
          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt ea, commodi pariatur sit ut ipsam quaerat aut fugiat. Nam, vero vitae. Est, eveniet repellendus tempora voluptatem corporis necessitatibus excepturi assumenda.
-         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde tempora dolorum cumque laudantium molestiae libero ipsam, asperiores soluta ullam ex id dolorem quo veritatis facilis cum illum quaerat quae. Quos?
-         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam suscipit cum at nulla enim nobis, nam dolorem tenetur rerum mollitia commodi nostrum consequatur fuga eos iusto, nemo illo rem consectetur?
-         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio laboriosam tenetur, error id harum labore sunt fuga perferendis quae quasi beatae accusamus dolorum eaque aut saepe facilis deserunt nobis. Eveniet!
+         
         </p>
 
 <?php
@@ -87,35 +87,38 @@ if($_SESSION['id']!= 0){
 <h2> Etat d'avancement de votre inscription :</h2>
 </br>
 <h2>Choix de votre chanson pour le concours.</h2>  
-
-<form name="formJS" id="formJS">
-<input type="text" id="queryArtists" require>
-<input type="text" id="querySongs" require>
-<button type="submit"> soumettre </button>
+<div class="submitContainer">
+<div class="containerFormChant">
+<form class = "formChant" name="formJS" id="formJS">
+<label for="nom">Artiste</label><input type="text" id="queryArtists" class="inputSearch" require>
+<label for="nom">Titre</label><input type="text" id="querySongs" class="inputSearch" require>
+<div class="valider">
+<button type="submit" class="btnValider"> Trouver ma chanson </button>
+</div>
 </form>
-
+</div>
 
 		<div class="containerFormChant">
-      
-			
 		<Form class="formChant"  method="POST"> 
-				<label for="nom">Artiste</label><select placeholder="artistes correspondants à votre recherche" name="artists" id="artists">  </select>
+			<label for="nom">Artiste</label><select placeholder="artistes correspondants à votre recherche" name="artists" id="artists" class="inputSearch">  <option value="neutre" disabled selected >Artistes correspondants à la recherche</option></select>
 
-				<label for="nom">Titre</label><select placeholder="morceaux correspondants à votre recherche" name="songs" id="songs">  </select>
-
-				<div class="valider">
-				<button type="submit" name="submit" class="btnValider">Rechercher</button>
+			<label for="nom">Titre</label><select placeholder="morceaux correspondants à votre recherche" name="songs" id="songs" class="inputSearch">  <option value="neutre" disabled selected>Titres correspondants à la recherche</option></select>
+			<div class="valider">
+			<button type="submit" name="submit" class="btnValider">Valider ma chanson</button>
 </div>
 		</Form>
 		</div>
 </div>
 
-    <form method="POST"  enctype="multipart/form-data">
-        <input type="file" name="uploaded_file"> <br />
-        <input type="submit" name="submit"> <br>
+<div class ="formUpload">
+    <form  method="POST"  enctype="multipart/form-data">
+        <input class="formUploadInput" type="file" name="uploaded_file"> 
+       <div class="valider"><input class="formUploadButton" type="submit" name="submit"> </div> 
 </form>
+</div>
+</div>
 
-<div id="listeArt">
+</div>
 <?php
 }else{}
 ?>

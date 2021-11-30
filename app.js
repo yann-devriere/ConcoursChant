@@ -26,8 +26,8 @@ function checkPass() {
     document.querySelector("#formJS").addEventListener("submit", (e) => {
       const query = formArtiste.value;
       const query2 = formChanson.value;
-      selectArtistes.innerHTML = " ";
-      selectChansons.innerHTML = " ";
+      selectArtistes.innerHTML =' <option value="neutre" disabled selected >Artistes correspondants à la recherche</option>' ;
+      selectChansons.innerHTML = ' <option value="neutre" disabled selected >Titres correspondants à la recherche</option>';
       e.preventDefault();
       search2(query);
       search(query,query2);
