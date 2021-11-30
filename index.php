@@ -135,7 +135,7 @@ if($_SESSION['id'] ==0) { ?>
 
 </div>
     <h2>Présentation</h2><br>
-     <p> dolor sit amet consectetur adipisicing elit. Aperiam officia necessitatibus beatae architecto expedita reiciendis 
+     <p class = "justify"> dolor sit amet consectetur adipisicing elit. Aperiam officia necessitatibus beatae architecto expedita reiciendis 
          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, sit? Dicta sapiente hic corrupti suscipit. Consequuntur vel sed unde, fugiat numquam explicabo iusto ducimus, odio id provident consectetur iste iure
          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt ea, commodi pariatur sit ut ipsam quaerat aut fugiat. Nam, vero vitae. Est, eveniet repellendus tempora voluptatem corporis necessitatibus excepturi assumenda.
          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde tempora dolorum cumque laudantium molestiae libero ipsam, asperiores soluta ullam ex id dolorem quo veritatis facilis cum illum quaerat quae. Quos?

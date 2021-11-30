@@ -85,6 +85,7 @@ if($_SESSION['id']!= 0){
 ?>	
 
 <h2> Etat d'avancement de votre inscription :</h2>
+
 </br>
 <h2>Choix de votre chanson pour le concours.</h2>  
 <div class="submitContainer">

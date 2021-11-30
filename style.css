@@ -280,3 +280,47 @@ display: flex;
     width: 50%;
     align-content: center;
 }
+
+.justify{
+    text-align: justify;
+    width:70%;
+    margin-left:4%;
+}
+
+.admin{
+    color:rgb(235, 228, 241);
+    font-size: 22px;
+
+
+}
+
+.ongletsAdmin{
+    background-color: blueviolet;
+    height: 10%;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.menuDAdmin{
+
+        display: block;
+        float: right;
+        width :19%;
+        background-color : blueviolet;
+        height: auto;
+        margin: auto 20px 0 30px;
+        border: solid rgb(224, 116, 116) 2px;
+        border-radius: 20px;
+        min-height: 250px;
+        /* padding: 10px 18px 30px 30px; */
+        color: lightgray;
+        }
+td, tr{
+    border: solid black 1px;
+    font-size: 22px;
+}
+table{
+    display: flex;
+    justify-content: center;
+}
