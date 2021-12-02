@@ -324,3 +324,7 @@ table{
     display: flex;
     justify-content: center;
 }
+
+a.black{
+    color :black;
+}

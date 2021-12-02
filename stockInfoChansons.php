@@ -1,7 +1,9 @@
 <?php
 session_start();
 
-$db = new PDO('mysql:host=localhost; dbname=concoursChant', 'chant', '01021991');
+// $db = new PDO('mysql:host=localhost; dbname=concoursChant', 'chant', '01021991');
+$db = new PDO('mysql:host=localhost:3307;dbname=concoursChant;', 'chant' , '01021991');
+
 
 $artiste=$_POST['artists'];
 $titre=$_POST['songs'];

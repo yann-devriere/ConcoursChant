@@ -1,7 +1,8 @@
 <?php
 session_start();
 	 
-	$db = new PDO('mysql:host=localhost;dbname=concoursChant', 'chant', '01021991');
+	// $db = new PDO('mysql:host=localhost;dbname=concoursChant', 'chant', '01021991');
+	$db = new PDO('mysql:host=localhost:3307;dbname=concoursChant', 'chant', '01021991');
 	
 
 
@@ -84,6 +85,15 @@ session_start();
 if($_SESSION['id']!= 0){
 ?>	
 
+<?php
+if($_SESSION['pseudo']== "admin"){ 
+    $url = "./interadmin.php";
+    $text ="Interface d'administration";
+    $pageAdmin = '<b><a href='.$url.' class="black" >Interface administration</a></b>';
+    echo $pageAdmin;
+}
+?>
+
 <h2> Etat d'avancement de votre inscription :</h2>
 
 </br>
@@ -91,12 +101,12 @@ if($_SESSION['id']!= 0){
 
 		
 <?php if ($_SESSION['verif1'] != 0 ){ ?>
-<?php
- $dejaChoisi = $db->prepare("SELECT * FROM songs WHERE pseudo = ?");
- $dejaChoisi->execute(array($_SESSION['pseudo']));
- $chansonDB = $dejaChoisi->fetch();
- $chansonCheck=$chansonDB['song'];
- $artisteCheck=$chansonDB['artiste'];
+    <?php
+         $dejaChoisi = $db->prepare("SELECT * FROM songs WHERE pseudo = ?");
+         $dejaChoisi->execute(array($_SESSION['pseudo']));
+         $chansonDB = $dejaChoisi->fetch();
+         $chansonCheck=$chansonDB['song'];
+         $artisteCheck=$chansonDB['artiste'];
 echo"
 <p>Vous avez demandé à chanter la chanson <b><?php echo $chansonCheck ?></b> par <b><?php echo $artisteCheck ?></b>. </p>";
   ?>
@@ -112,18 +122,19 @@ echo"
 <?php }else{ ?>
 
     <?php
- $dejaChoisi = $db->prepare("SELECT * FROM songs WHERE pseudo = ?");
- $dejaChoisi->execute(array($_SESSION['pseudo']));
- $chansonDB = $dejaChoisi->fetch();
- $chansonCheck=$chansonDB['song'];
- $artisteCheck=$chansonDB['artiste'];
- if ($chansonCheck != NULL){
+     $dejaChoisi = $db->prepare("SELECT * FROM songs WHERE pseudo = ?");
+     $dejaChoisi->execute(array($_SESSION['pseudo']));
+     $chansonDB = $dejaChoisi->fetch();
+     $chansonCheck=$chansonDB['song'];
+     $artisteCheck=$chansonDB['artiste'];
+        if ($chansonCheck != NULL){
 
-?>
+    ?>
 
 <p>Vous avez demandé à chanter la chanson <b><?php echo $chansonCheck ?></b> par <b><?php echo $artisteCheck ?></b>. </p>
 
-<?php } ?>
+    <?php } ?>
+    
     <h2>Choix de votre chanson pour le concours.</h2>  
 <div class="submitContainer">
 <div class="containerFormChant">
@@ -136,17 +147,18 @@ echo"
 </form>
 </div>
     <div class="containerFormChant">
-		<Form class="formChant" id="formChanson"  onsubmit= "return confirm('envoyer cette demande ?')"method="POST" action="stockInfoChansons.php"> 
+		<Form class="formChant" id="formChanson"  onsubmit= "return confirm('Voulez-vous chanter ?')"method="POST" action="stockInfoChansons.php"> 
 			<label for="nom">Artiste</label><select required placeholder="artistes correspondants à votre recherche" name="artists" id="artists" class="inputSearch">  <option value="neutre" disabled selected >Artistes correspondants à la recherche</option></select>
 
 			<label for="nom">Titre</label><select placeholder="morceaux correspondants à votre recherche" name="songs" id="songs" class="inputSearch" required>  <option value="neutre" disabled selected>Titres correspondants à la recherche</option></select>
 			<div class="valider">
 			<button type="submit" id="validationChanson" name="submit" class="btnValider">Valider ma chanson</button>
-</div>
+            </div>
 		</Form>
-		</div>
+	</div>
 </div>
-<?php } ?>
+
+    <?php } ?>
 
 </div>
 

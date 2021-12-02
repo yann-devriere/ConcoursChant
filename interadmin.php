@@ -1,7 +1,9 @@
 <?php
 session_start();
 
-	$db = new PDO('mysql:host=localhost;dbname=concoursChant', 'chant', '01021991');
+	// $db = new PDO('mysql:host=localhost;dbname=concoursChant', 'chant', '01021991');
+$db = new PDO('mysql:host=localhost:3307;dbname=concoursChant;', 'chant' , '01021991');
+	
 ?>
     
    
@@ -61,7 +63,13 @@ while($data=$query->fetch())
 {
    $pseudotab= $data['pseudo'];
    
-echo'<tr><td id='.$pseudotab.'>'.$data['pseudo'].'</td><td>'.$data['song'].'</td><td>'.$data['artiste'].'</td><td> <form name='.$pseudotab.' method="POST" action=""> <input type="submit" >'.$data['verif1'].'</form></td></tr>';
+echo'<tr><td id='.$pseudotab.'>'.$data['pseudo'].'</td><td>'.$data['song'].'</td><td>'.$data['artiste'].'</td><td> <form  method="POST" action=""> <input type="submit" name='.btn.$pseudotab.' >'.$data['verif1'].'</form></td></tr>';
+
+
+if (isset($_POST["btn$pseudotab"])){
+	$query2=$db->prepare("UPDATE songs SET verif1= '1' WHERE pseudo ='$pseudotab'");
+    $query2->execute();
+	}
 }
 
 echo'</table>';
@@ -69,10 +77,7 @@ echo'</table>';
 ?>
 
 <?php
-if("CB.$pseudotab" == 1){
-    $query2=$db->prepare("UPDATE song SET verif1= '1' WHERE pseudo ='$pseudotab'");
-    $query2->execute();
-}
+
 
 ?>
 </div>
