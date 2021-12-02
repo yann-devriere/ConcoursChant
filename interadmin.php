@@ -1,9 +1,7 @@
 <?php
 session_start();
 
-	// $db = new PDO('mysql:host=localhost;dbname=concoursChant', 'chant', '01021991');
-$db = new PDO('mysql:host=localhost:3307;dbname=concoursChant;', 'chant' , '01021991');
-	
+	$db = new PDO('mysql:host=localhost;dbname=concoursChant', 'chant', '01021991');
 ?>
     
    
@@ -56,30 +54,42 @@ if($_SESSION['pseudo']!='admin'){
           if($_SESSION['pseudo']=='admin')
 $query=$db->prepare('SELECT * FROM songs');
 $query->execute();
-
-
 echo'<table><tr><td>pseudo</td><td>chanson</td><td>artiste</td><td>verif1</td></tr>';
 while($data=$query->fetch())
 {
    $pseudotab= $data['pseudo'];
-   
-echo'<tr><td id='.$pseudotab.'>'.$data['pseudo'].'</td><td>'.$data['song'].'</td><td>'.$data['artiste'].'</td><td> <form  method="POST" action=""> <input type="submit" name='.btn.$pseudotab.' >'.$data['verif1'].'</form></td></tr>';
 
-
-if (isset($_POST["btn$pseudotab"])){
-	$query2=$db->prepare("UPDATE songs SET verif1= '1' WHERE pseudo ='$pseudotab'");
-    $query2->execute();
-	}
-}
-
-echo'</table>';
-            
 ?>
+   <form  method="POST" action="">
 
 <?php
+echo'<tr><td id='.$pseudotab.'>'.$data['pseudo'].'</td><td>'.$data['song'].'</td><td>'.$data['artiste'].'</td><td>  <input type="checkbox" id='.btn.$pseudotab.' name='.btn.$pseudotab.' >'.$data['verif1'].'</td></tr>';
+
+
+if(($_POST["btn$pseudotab"])){
+$query2=$db->prepare("UPDATE songs SET verif1= 'OUI' WHERE pseudo ='$pseudotab'");
+$query2->execute();
+
+
+
+echo'<script>window.location.href="./interadmin.php"</script>';
+
+
+
+}
+}
 
 
 ?>
+
+<input type="submit">
+</form>
+<?php
+echo'</table>';
+            
+
+?>
+
 </div>
 </div>
  </div>
