@@ -2,8 +2,8 @@
 session_start();
 // phpinfo();
 
-$db = new PDO('mysql:host=localhost;dbname=concoursChant;', 'chant' , '01021991');
-// $db = new PDO('mysql:host=localhost:3307;dbname=concoursChant;', 'chant' , '01021991');
+ $db = new PDO('mysql:host=localhost;dbname=concoursChant;', 'chant' , '01021991');
+//$db = new PDO('mysql:host=localhost:3307;dbname=concoursChant;', 'chant' , '01021991');
 
 
 if(isset($_POST['formconnexion'])) {
@@ -36,8 +36,20 @@ if(isset($_POST['formconnexion'])) {
           $_SESSION['adresse'] = $userinfo['adresse'];
           $_SESSION['codepostal'] = $userinfo['codepostal'];
           $_SESSION['ville'] = $userinfo['ville'];
-          $_SESSION['verif1'] = $userinfo['verif1'];
+          header("Location: profil.php");
+       }
          
+
+          $requser1 = $db->prepare("SELECT * FROM songs WHERE pseudo = ?");
+       $requser1->execute(array($pseudoconnect));
+       $userexist1 = $requser1->rowCount();
+       
+
+       if($userexist1 == 1) {
+          $userinfo1 = $requser1->fetch();
+      $_SESSION['verif1'] = $userinfo1['verif1'];
+       $_SESSION['rejeter'] = $userinfo1['rejeter'];
+       $_SESSION['song'] = $userinfo1['song'];
           header("Location: profil.php");
 
        } else {

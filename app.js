@@ -4,10 +4,9 @@
 //     if ( confirm( "Souhaitez-vous vraiment faire une demande de réinitialisation de mot de passe ?" ) ) { console.log("Mail envoyée");
         
 //     } else {
-//      console.log("annulation") ;  
+//      console.log("annulation") ; 
 //     }
 // })
-
 
 function checkPass() {
      let mdp1 = document.getElementById("password").value;
@@ -19,56 +18,20 @@ function checkPass() {
     }
 
     const formArtiste = document.querySelector("#queryArtists");
-    const formChanson = document.querySelector("#querySongs")
-    const selectArtistes = document.querySelector("#artists");
+    const formChanson = document.querySelector("#querySongs");
+
     const selectChansons = document.querySelector("#songs");
     
     document.querySelector("#formJS").addEventListener("submit", (e) => {
       const query = formArtiste.value;
       const query2 = formChanson.value;
-      selectArtistes.innerHTML =' ' ;
       selectChansons.innerHTML = ' ';
       e.preventDefault();
-      search2(query,query2);
       search(query,query2);
 
     });
 
     
-    // function search2(param) {
-    //   const url = `http://217.182.174.155:5000/ws/2/artist?query=${param}%20&fmt=json`;
-    //   fetch(url)
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       console.log("data", data);
-    //       const artists = data.artists;
-    //       artists.forEach((element) => {
-    //         const nameArtist = element["name"];
-    //         document.querySelector(
-    //           "#artists"
-    //         ).innerHTML += `<option value="${nameArtist}">${nameArtist}</option>`;
-    //       });
-    //     })
-    //     .catch((err) => console.log(err));
-    // }
-    
-    function search2(param,param2) {
-      const url = `http://217.182.174.155:5000/ws/2/recording?query=recording:${param2}%20AND%20artist:${param}%20&fmt=json`;
-      fetch(url)
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("data", data);
-          const recordings = data.recordings;
-          recordings.forEach((element) => {
-           
-            
-            document.querySelector(
-              "#artists"
-            ).innerHTML += `<option value="${nameArtiste}">${nameArtiste}</option>`;
-          });
-        })
-        .catch((err) => console.log(err));
-    }
 
     function search(param,param2) {
       const url = `http://217.182.174.155:5000/ws/2/recording?query=recording:${param2}%20AND%20artist:${param}%20&fmt=json`;
@@ -79,10 +42,12 @@ function checkPass() {
           const recordings = data.recordings;
           recordings.forEach((element) => {
             const nameSong = element.title; 
+
             const nameArtiste = element["artist-credit"][0]["name"]; 
+
             document.querySelector(
               "#songs"
-            ).innerHTML += `<option value="${nameSong}">${nameSong}, ${nameArtiste}</option>`;
+            ).innerHTML += `<option value="${nameSong} par ${nameArtiste}">${nameSong} par ${nameArtiste}</option>`;
           });
         })
         .catch((err) => console.log(err));

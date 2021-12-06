@@ -3,8 +3,7 @@ session_start();
 
 	$db = new PDO('mysql:host=localhost;dbname=concoursChant', 'chant', '01021991');
 ?>
-    
-   
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,7 +23,7 @@ if($_SESSION['pseudo']!='admin'){
 ?>
     
 <nav class = "ongletsAdmin">
-   <span class = "admin">Administration</span>
+   <span class = "admin" style="font-size: 40px;">Administration</span>
 </nav>
 
 <div class="container"> 
@@ -48,13 +47,12 @@ if($_SESSION['pseudo']!='admin'){
         <div class = "bodyContainer"> 
     <h2>Interface d'administration <br> <br> Gestion des candidatures</h2><br>
 </div>
-
         <div class= "tabData">
 <?php
           if($_SESSION['pseudo']=='admin')
 $query=$db->prepare('SELECT * FROM songs');
 $query->execute();
-echo'<table><tr><td>pseudo</td><td>chanson</td><td>artiste</td><td>verif1</td></tr>';
+echo'<table><tr><td>Pseudo</td><td>Chanson</td><td>Valider</td><td>Rejeter</td><td>Fichier</td><td>ValidFichier</td><td>RejetFichier</td></tr>';
 while($data=$query->fetch())
 {
    $pseudotab= $data['pseudo'];
@@ -63,47 +61,42 @@ while($data=$query->fetch())
    <form  method="POST" action="">
 
 <?php
-echo'<tr><td id='.$pseudotab.'>'.$data['pseudo'].'</td><td>'.$data['song'].'</td><td>'.$data['artiste'].'</td><td>  <input type="checkbox" id='.btn.$pseudotab.' name='.btn.$pseudotab.' >'.$data['verif1'].'</td></tr>';
+echo'<tr><td id='.$pseudotab.'>'.$data['pseudo'].'</td><td>'.$data['song'].'</td><td>  <input type="checkbox" id='.btn.$pseudotab.' name='.btn.$pseudotab.' >'.$data['verif1'].'</td> <td>  <input type="checkbox" id='.btn2.$pseudotab.' name='.btn2.$pseudotab.' >'.$data['rejeter'].'</td><td>'.$data['fichier'].'</td><td>  <input type="checkbox" id='.btn.$pseudotab.' name='.btn.$pseudotab.' >'.$data['verif2'].'</td> <td>  <input type="checkbox" id='.btn2.$pseudotab.' name='.btn2.$pseudotab.' >'.$data['rejeter2'].'</td></tr>';
 
-
-if(($_POST["btn$pseudotab"])){
-$query2=$db->prepare("UPDATE songs SET verif1= 'OUI' WHERE pseudo ='$pseudotab'");
+if($_POST["btn$pseudotab"]){
+$query2=$db->prepare("UPDATE songs SET verif1= 'OUI', rejeter='NON' WHERE pseudo ='$pseudotab'");
 $query2->execute();
-
-
+// $query3=$db->prepare("UPDATE users SET verif1= 'OUI', rejeter='NON' WHERE pseudo ='$pseudotab'");
+// $query3->execute();
 
 echo'<script>window.location.href="./interadmin.php"</script>';
+}
 
-
+if(($_POST["btn2$pseudotab"])){
+	$query4=$db->prepare("UPDATE songs SET rejeter= 'OUI',verif1= 'NON' WHERE pseudo ='$pseudotab'");
+	$query4->execute();
+	// $query5=$db->prepare("UPDATE users SET rejeter= 'OUI',verif1= 'NON' WHERE pseudo ='$pseudotab'");
+	// $query5->execute();
+	
+	echo'<script>window.location.href="./interadmin.php"</script>';
 
 }
 }
-
-
 ?>
-
-<input type="submit">
-</form>
 <?php
 echo'</table>';
             
-
 ?>
+<input type="submit" style=" background-color:gold; color:green" value="Soumettre les modifications" class="soumettre">
+</form>
+
 
 </div>
 </div>
  </div>
 	   </body>
 	</html>  
-           
-    
 
-
-
-
-</body>
-
-</html>
 
 
 

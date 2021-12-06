@@ -1,10 +1,9 @@
 <?php
 session_start();
 	 
-	$db = new PDO('mysql:host=localhost;dbname=concoursChant', 'chant', '01021991');
-	// $db = new PDO('mysql:host=localhost:3307;dbname=concoursChant', 'chant', '01021991');
+	 $db = new PDO('mysql:host=localhost;dbname=concoursChant', 'chant', '01021991');
+	//$db = new PDO('mysql:host=localhost:3307;dbname=concoursChant', 'chant', '01021991');
 	
-
 
 	?>
     
@@ -87,10 +86,8 @@ if($_SESSION['id']!= 0){
 
 <?php
 if($_SESSION['pseudo']== "admin"){ 
-    $url = "./interadmin.php";
-    $text ="Interface d'administration";
-    $pageAdmin = '<b><a href='.$url.' class="black" >Interface administration</a></b>';
-    echo $pageAdmin;
+    header("Location: interadmin.php");
+  
 }
 ?>
 
@@ -100,23 +97,34 @@ if($_SESSION['pseudo']== "admin"){
 
 
 		
-<?php if ($_SESSION['verif1'] != 0 ){ ?>
+<?php if ($_SESSION['verif1'] != "NON" ){ ?>
     <?php
          $dejaChoisi = $db->prepare("SELECT * FROM songs WHERE pseudo = ?");
          $dejaChoisi->execute(array($_SESSION['pseudo']));
          $chansonDB = $dejaChoisi->fetch();
          $chansonCheck=$chansonDB['song'];
-         $artisteCheck=$chansonDB['artiste'];
 echo"
-<p>Vous avez demandé à chanter la chanson <b><?php echo $chansonCheck ?></b> par <b><?php echo $artisteCheck ?></b>. </p>";
+<p>Vous allez chanter la chanson: <b> $chansonCheck</b>. </p>";
   ?>
 
     <h2>Envoyez-nous votre bande son</h2>
 <div class ="formUpload">
     <form  method="POST"  enctype="multipart/form-data">
         <input class="formUploadInput" type="file" name="uploaded_file"> 
-       <div class="valider"><input class="formUploadButton" type="submit" name="submit"> </div> 
+       <div class="valider"><input class="formUploadButton" type="submit" name="submitsong"> </div> 
+       
+    
 </form>
+ <?php
+  
+ 
+ if($_POST['submitsong']){
+     $nomfichier=$_SESSION['song'];
+    $pseudoSession=$_SESSION['pseudo'];
+    $query=$db->prepare("UPDATE songs SET fichier = '$nomfichier' WHERE pseudo='$pseudoSession'");
+    $query->execute();
+    }
+     ?>
 </div>
 </div>
 <?php }else{ ?>
@@ -126,15 +134,24 @@ echo"
      $dejaChoisi->execute(array($_SESSION['pseudo']));
      $chansonDB = $dejaChoisi->fetch();
      $chansonCheck=$chansonDB['song'];
-     $artisteCheck=$chansonDB['artiste'];
         if ($chansonCheck != NULL){
 
     ?>
 
-<p>Vous avez demandé à chanter la chanson <b><?php echo $chansonCheck ?></b> par <b><?php echo $artisteCheck ?></b>. </p>
+<p>Vous avez demandé à chanter la chanson <b><?php echo $chansonCheck ?></b>. </p>
+
+    <?php }
+     $requser1 = $db->prepare("SELECT * FROM songs WHERE pseudo = ?");
+     $requser1->execute(array($_SESSION['pseudo']));
+        $userinfo1 = $requser1->fetch();
+        if($userinfo1['rejeter']=="OUI"){
+        
+    ?>
+    <p style=" color:red; font-size:19px;"><b>CETTE CHANSON A ETE REJETEE PAR L'ADMINISTRATEUR, VOUS POUVEZ FAIRE UNE NOUVELLE DEMANDE.</b>. </p>
 
     <?php } ?>
-    
+
+
     <h2>Choix de votre chanson pour le concours.</h2>  
 <div class="submitContainer">
 <div class="containerFormChant">
@@ -147,8 +164,7 @@ echo"
 </form>
 </div>
     <div class="containerFormChant">
-		<Form class="formChant" id="formChanson"  onsubmit= "return confirm('Voulez-vous chanter ?')"method="POST" action="stockInfoChansons.php"> 
-			<label for="nom">Artiste</label><select required placeholder="artistes correspondants à votre recherche" name="artists" id="artists" class="inputSearch">  <option value="neutre" disabled selected >Artistes correspondants à la recherche</option></select>
+		<Form class="formChant" id="formChanson"   onsubmit= "return confirm('Voulez-vous vraiment chanter cette chanson ?')"method="POST" action="stockInfoChansons.php"> 
 
 			<label for="nom">Titre</label><select placeholder="morceaux correspondants à votre recherche" name="songs" id="songs" class="inputSearch" required>  <option value="neutre" disabled selected>Titres correspondants à la recherche</option></select>
 			<div class="valider">
@@ -174,7 +190,7 @@ else{
 </html>
 
 <?php
-if (isset($_POST['submit'])) 
+if (isset($_POST['submitsong'])) 
 {
     $maxSize = 8000000;
     $validtext = array('.mp3', 'mp4');
@@ -202,8 +218,8 @@ if (isset($_POST['submit']))
     }
 
     $tmpName = $_FILES['uploaded_file']['tmp_name'];
-    $uniqueName = md5(uniqid(rand() . true));
-    $fileName = "upload/" . $uniqueName . $fileExt;
+    
+    $fileName = "upload/" . " choix de ". $_SESSION['pseudo'] . $fileExt;
     $resultat = move_uploaded_file($tmpName, $fileName);
 
     if ($resultat) 
@@ -211,7 +227,6 @@ if (isset($_POST['submit']))
         echo "Transfert terminé ! ";
     }
 }
-
 ?>
 
 	<script>

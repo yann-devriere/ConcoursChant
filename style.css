@@ -1,3 +1,4 @@
+
 header{
     background-image:url("guitare.jpg") ;
     width: auto;
@@ -15,6 +16,7 @@ body{
     background-color: rgb(214, 214, 214);
     border-radius: 20px;
     display: block;
+    width:auto;
 }
 .onglets{
     display: flex;
@@ -279,6 +281,7 @@ display: flex;
     display: flex;
     width: 50%;
     align-content: center;
+    color:lightgray;
 }
 
 .justify{
@@ -303,7 +306,6 @@ display: flex;
 }
 
 .menuDAdmin{
-
         display: block;
         float: right;
         width :19%;
@@ -325,6 +327,18 @@ table{
     justify-content: center;
 }
 
-a.black{
-    color :black;
+.btnValider{
+    background-color: lightgray;
+    
+}
+.tabData{
+    font-size: 30px;
+}
+
+.soumettre{
+    margin-left: 18%;
+    font-weight: bold;
+    height: 25px;
+    font-size: 16px;
+    width: 40%;
 }

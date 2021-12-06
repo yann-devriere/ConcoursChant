@@ -1,9 +1,0 @@
-http://musicbrainz.org/ws/2/artist/?query=artist:vanessa%20paradis 
-
-https://musicbrainz.org/ws/2/artist/?query=artist:goldman%20AND%20country:fr
-
-https://musicbrainz.org/ws/2/artist/?query=quand%20la%20musique%20est%20bonne%20type=recording&method=indexed
-
-https://musicbrainz.org/ws/2/recording/?query=quand%20la%20musique%20est%20bonne%20&fmt=json
-
-b48b3680-864d-4ed2-9717-25e4bbad6fd9
