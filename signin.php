@@ -13,10 +13,12 @@ $age=$_POST['age'];
 $sexe=$_POST['sexe'];
 $email=$_POST['email'];
 $password=$_POST['password'];
+$password2=$_POST['password2'];
 $telephone=$_POST['telephone'];
 $adresse=$_POST['adresse'];
 $codepostal=$_POST['codepostal'];
 $ville=$_POST['ville'];
+
           
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -33,6 +35,10 @@ $checktel = "SELECT telephone FROM users WHERE telephone ='$telephone'";
 $resultat1 = $db->prepare($checktel);
 $resultat1->execute();
 
+if($password != $password2){
+  echo '<script>alert("les mots de passes saisis ne sont pas identiques" );window.location.href = "./inscription.php";</script>'; 
+}else{
+
 if($result->rowCount() > 0 or $resultat->rowCount() > 0 or $resultat1->rowCount() > 0){
   echo '<script>alert("Adresse mail ou pseudo déja utilisée" );window.location.href = "./inscription.php";</script>'; 
 }
@@ -47,6 +53,6 @@ else{
    $req1 -> execute();
 
   exit();
-
+}
 }
 ?>

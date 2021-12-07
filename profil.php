@@ -91,12 +91,23 @@ if($_SESSION['pseudo']== "admin"){
 }
 ?>
 
-<h2> Etat d'avancement de votre inscription :</h2>
 
-</br>
+<?php 
+$dejaChoisi = $db->prepare("SELECT * FROM songs WHERE pseudo = ?");
+          $dejaChoisi->execute(array($_SESSION['pseudo']));
+          $fichierDB = $dejaChoisi->fetch();
+          $fichierCheck=$fichierDB['verif2'];
+          $fichierRejet=$fichierDB['rejeter2'];
 
+if($fichierCheck != "NON" ){ 
+?>
 
-		
+<p style="font-size: 29px; color:darkgreen; font-weight:bold">Votre inscription est quasiment terminée, il ne vous reste plus qu'à déposer votre chèque à la mairie de Longuenesse afin de valider votre participation.</p> 
+
+<?php
+}else{
+
+          ?>
 <?php if ($_SESSION['verif1'] != "NON" ){ ?>
     <?php
          $dejaChoisi = $db->prepare("SELECT * FROM songs WHERE pseudo = ?");
@@ -106,6 +117,15 @@ if($_SESSION['pseudo']== "admin"){
 echo"
 <p>Vous allez chanter la chanson: <b> $chansonCheck</b>. </p>";
   ?>
+
+<?php
+if($fichierRejet == "OUI"){
+    ?>
+    <p style=" color:red; font-size:19px;"><b>CETTE CHANSON A ETE REJETEE PAR L'ADMINISTRATEUR, VOUS POUVEZ FAIRE UNE NOUVELLE DEMANDE.</b>. </p>
+
+    <?php
+}
+?>
 
     <h2>Envoyez-nous votre bande son</h2>
 <div class ="formUpload">
@@ -174,7 +194,13 @@ echo"
 	</div>
 </div>
 
-    <?php } ?>
+    <?php
+
+}
+
+
+
+} ?>
 
 </div>
 
@@ -219,7 +245,7 @@ if (isset($_POST['submitsong']))
 
     $tmpName = $_FILES['uploaded_file']['tmp_name'];
     
-    $fileName = "upload/" . " choix de ". $_SESSION['pseudo'] . $fileExt;
+    $fileName = "upload/" . $_SESSION['pseudo'] . $fileExt;
     $resultat = move_uploaded_file($tmpName, $fileName);
 
     if ($resultat) 
@@ -241,16 +267,3 @@ if (isset($_POST['submitsong']))
 	})
 
 	</script>
-
-<!-- <script>
-	const validationChanson = document.querySelector("#formChanson");
-
-	validationChanson.addEventListener("submit",()=>{
-		if ( confirm("Vous allez soumettre votre demande de chanson")){
-            window.location.href="./profil.php"
-		}else{
-			window.location.href="./profil.php"
-		}
-	})
-
-	</script> -->

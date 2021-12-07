@@ -8,14 +8,14 @@
 //     }
 // })
 
-function checkPass() {
-     let mdp1 = document.getElementById("password").value;
-     let mdp2 = document.getElementById("password2").value;
-     if(mdp1 == mdp2) { document.form.submit(); 
-     } else { alert("mdp différents");
-      e.preventDefault(); 
-    }
-    }
+// function checkPass() {
+//      let mdp1 = document.getElementById("password").value;
+//      let mdp2 = document.getElementById("password2").value;
+//      if(mdp1 == mdp2) { document.form.submit(); 
+//      } else { alert("mdp différents");
+//       e.preventDefault(); 
+//     }
+//     }
 
     const formArtiste = document.querySelector("#queryArtists");
     const formChanson = document.querySelector("#querySongs");
