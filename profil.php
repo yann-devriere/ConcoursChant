@@ -143,7 +143,9 @@ if($fichierRejet == "OUI"){
     $pseudoSession=$_SESSION['pseudo'];
     $query=$db->prepare("UPDATE songs SET fichier = '$nomfichier' WHERE pseudo='$pseudoSession'");
     $query->execute();
-    }
+    $query1=$db->prepare("UPDATE songs SET rejeter2 = 'NON' WHERE pseudo='$pseudoSession'");
+    $query1->execute();
+}
      ?>
 </div>
 </div>
