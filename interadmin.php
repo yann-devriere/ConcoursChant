@@ -52,7 +52,7 @@ if($_SESSION['pseudo']!='admin'){
           if($_SESSION['pseudo']=='admin')
 $query=$db->prepare('SELECT * FROM songs');
 $query->execute();
-echo'<table><tr><td>Pseudo</td><td>Chanson</td><td>Valider</td><td>Rejeter</td><td>Fichier</td><td>ValidFichier</td><td>RejetFichier</td></tr>';
+echo'<table><tr class= "tablo"><td>Pseudo</td><td>Chanson</td><td>Valider</td><td>Rejeter</td><td>Fichier</td><td>ValidFichier</td><td>RejetFichier</td></tr>';
 while($data=$query->fetch())
 {
    $pseudotab= $data['pseudo'];
@@ -66,6 +66,8 @@ $src= "src='upload/";
 $type='type="audio/mp3">';
 $srcdatafichier= "$src$datafichier";
 $audio="<audio controls $srcdatafichier' $type";
+
+// $var = printf("bla %s nsk %d", $chaine, $valeur)
 
 
 echo'<tr><td id='.$pseudotab.'>'.$data['pseudo'].'</td><td>'.$data['song'].'</td><td>  <input type="checkbox" id='.btn.$pseudotab.' name='.btn.$pseudotab.' >'.$data['verif1'].'</td> <td>  <input type="checkbox" id='.btn2.$pseudotab.' name='.btn2.$pseudotab.' >'.$data['rejeter'].'</td><td>'.$audio.'</td><td>  <input type="checkbox" id='.btn3.$pseudotab.' name='.btn3.$pseudotab.' >'.$data['verif2'].'</td> <td>  <input type="checkbox" id='.btn4.$pseudotab.' name='.btn4.$pseudotab.' >'.$data['rejeter2'].'</td></tr>';
@@ -115,10 +117,6 @@ echo'</table>';
  </div>
 	   </body>
 	</html>  
-
-
-
-
 <script>
 	const deco= document.querySelector("#deco");
 

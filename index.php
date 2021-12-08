@@ -80,9 +80,9 @@ if(isset($_POST['formconnexion'])) {
 if($_SESSION['id'] ==0) { ?>
 
 <nav class = "onglets">
-   <span class = "active onglet1"><div class="testback">Présentation</div></span>
+   <span class = "active onglet1">Présentation</span>
     <span class = "barre onglet0" >|</span>
-   <a href="inscription.php"> <span class = "active onglet2">Je m'inscris !</span></a>
+   <a href="inscription.php"> <span class = "active onglet2">Inscription</span></a>
 </nav>
 
 <div class="container"> 
@@ -91,7 +91,7 @@ if($_SESSION['id'] ==0) { ?>
             <div class="innerMenu">
              <p>Pseudo*</p>
                 <input type="text" name="pseudoconnect" required placeholder="Pseudo"></input>
-             <p>Mot de passe*</p>
+             <p class= "mdp">Mot de passe*</p>
                 <input type="password" name="mdpconnect"  required placeholder="Mot de passe"></input>
                 <div class="btnSpot">
                 <button type="submit" name="formconnexion" class="btnConnexion">Connexion</button>
