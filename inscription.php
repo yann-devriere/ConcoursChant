@@ -72,4 +72,20 @@ session_start();
         </form>
         </div>
 </body>
+
+<script>
+
+const pwd = document.querySelector("#password");
+const pwd2 = document.querySelector("#password2");
+
+pwd2.addEventListener('keyup',function(){
+    if (pwd.value != pwd2.value){
+    pwd2.setAttribute("style","background-color : red;");
+    }else{
+        pwd2.setAttribute("style","background-color : green;")
+    }
+})
+
+</script>
+
 </html>
